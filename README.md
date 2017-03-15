@@ -21,7 +21,7 @@ A sample session:
 * git config --global user.email 'email address'
 * git add index.html
 * git status
-* git remote add origin <gitub address>
+* git remote add origin &lt;gitub address>
 * git push -u origin master
 
 
