@@ -4,7 +4,7 @@ Learning GitHub
 Learning branch, HJY
 
 ## git
-Git can be downloaded from [here](install : http://git-scm.com/download/win)
+Git can be downloaded from [here](http://git-scm.com/download/win)
 
 Following are some git commands:
 * git init
