@@ -29,3 +29,11 @@ A sample session:
 If restful service, which is an express server, use [cors](https://www.npmjs.com/package/cors) as middleware, 
 client websites in different domains can use restful service as back end.
 
+## KaTeX vs MathJax
+[KaTeX](https://github.com/Khan/KaTeX) is an alternative to [MathJax](http://docs.mathjax.org/).
+
+[KaTeX and MathJax Comparison Demo](http://www.intmath.com/cg5/katex-mathjax-comparison.php) demostrate the pros and cons
+between them. KaTeX is much faster, MathJax is much more flexible.
+
+
+
