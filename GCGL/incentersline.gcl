@@ -1,0 +1,42 @@
+number x 130
+number y 50
+point A 80 y
+cmark_t A 
+point B x 10
+cmark_r B
+point D 80 10
+cmark_b D
+drawsegment A B
+drawsegment A D
+drawsegment B D
+line AB A B
+perp AC A AB
+line BD B D
+intersec C BD AC
+drawsegment D C
+drawsegment A C
+cmark_l C
+bis AP C A D
+bis DP C D A
+intersec P AP DP
+cmark_lb P
+bis AQ D A B
+bis DQ A D B
+intersec Q AQ DQ
+cmark_rb Q
+line PQ P Q
+drawline PQ
+drawcircle A D
+intersec K A C P Q
+intersec L A B P Q
+cmark_b L
+cmark_b K
+line DQ D Q
+intersec R DQ AB
+cmark_r R
+drawsegment  D R
+line DP D P
+intersec S DP AC
+cmark_l S
+drawsegment D S
+
