@@ -30,7 +30,7 @@ Following are some git commands:
 **git diff can compare word documents, so we can use git to do version control of office documents.**
 
 ## cors
-If restful service, which is an express server, use [cors](https://www.npmjs.com/package/cors) as middleware, 
+If restful service, which is an express server, use [cors](https://www.npmjs.com/package/cors) as middleware,
 client websites in different domains can use restful service as back end.
 
 ## KaTeX vs MathJax
@@ -60,8 +60,8 @@ Choose appropriate directoy for doing work. For example *d:\work*.
 
 Use Android Studio to start Android Virtual Device
 1. Open Android Studio, open existing project *MyApp*.
-2. Run > Edit Configuration > Defaults > Android App > Target > Emulator > 
-    Prefer Android Virtual Device ... > Shift+Enter > AVD manager > 
+2. Run > Edit Configuration > Defaults > Android App > Target > Emulator >
+    Prefer Android Virtual Device ... > Shift+Enter > AVD manager >
     Creat Virtual Device(if your favorite cirtual device is not in list) >
     Select Virtual Device > Press Right Triangle to **lauch selected AVD**.
 
@@ -81,6 +81,21 @@ Use `npm install -g textract` to install globally.
 #### usage
 `textract file.docx`
 
+## Markdown Reader
+[Markdown Reader](./another.md) is a Chrome extension which can help displaying mathematics formula in any web page.
 
+It can display some mathematics formula.
+$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
+and $E=mc^2$.
 
+But look at following matrix
+$$ \begin{pmatrix} 1 & 0 \ 0 & 1 \end{pmatrix} $$
 
+## Github with MathJax
+[Github with MathJax](https://github.com/orsharir/github-mathjax) is a chrome extension which
+ add support for LaTeX equations in GitHub repositories, rendering them with an open source [MathJax](https://mathjax.org) library. In example, if you had it install you would see the following lovely equation: $e^{iπ}+1=0$.
+
+$$e^{iπ}+1=0$$
+
+Check it with matrix
+$$ \begin{pmatrix} 1 & 0 \ 0 & 1 \end{pmatrix} $$
