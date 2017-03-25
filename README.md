@@ -6,6 +6,7 @@ Learning branch
 ## git
 Git can be downloaded from [here](http://git-scm.com/download/win)
 
+#### Git commands
 Following are some git commands:
 * git init
 * git add *file*
@@ -16,7 +17,7 @@ Following are some git commands:
 * git clone
 * git checkout
 
-A sample session:
+#### A sample session:
 * git init
 * git config --global user.name 'user name'
 * git config --global user.email 'email address'
@@ -24,6 +25,9 @@ A sample session:
 * git status
 * git remote add origin *gitub address*
 * git push -u origin master
+
+#### Git version with office documents
+**git diff can compare word documents, so we can use git to do version control of office documents.**
 
 ## cors
 If restful service, which is an express server, use [cors](https://www.npmjs.com/package/cors) as middleware, 
@@ -47,6 +51,8 @@ Reference [Getting started](https://facebook.github.io/react-native/docs/getting
 6. use `set JAVA_HOME=c:\program files\android\android studio\jre` to set environment variable JAVA_HOME.
 
 #### react-native sample
+[react-native sample](./React-Redux/react-redux-practice.md).
+
 Choose appropriate directoy for doing work. For example *d:\work*.
 1. In directory D:\work, execute `react-native init MyApp` to initial react-native project *MyApp* and install necessary components
   in subdirectory *MyApp*.
@@ -65,6 +71,16 @@ Compile and bundle index.android.js into selected AVD
 1. In subdirectory *MyApp*, execute `react-native run-android` to bundle index.android.js into selected AMD.
 2. open selcted AMD, the *MyApp* is in work.
 3. modify index.android.js and execute `react-native run-android` to rebundle index.android.js into selected AMD.
+
+## textract
+[Textract](https://www.npmjs.com/package/textract) is a node module, its source code is [here](https://github.com/dbashford/textract), which can extract text form .docx, .doc, .pdf, ...。
+
+#### install
+Use `npm install -g textract` to install globally.
+
+#### usage
+`textract file.docx`
+
 
 
 
