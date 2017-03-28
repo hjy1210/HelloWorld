@@ -100,7 +100,6 @@ $$e^{i\pi}+1=0$$
 Check it with matrix
 $$ \begin{pmatrix} 1 & 0 \ 0 & 1 \end{pmatrix} $$
 
-<<<<<<< HEAD
 ## PptxGenJS
 [PptxGenJS](https://github.com/gitbrent/PptxGenJS) Quickly and easily create PowerPoint presentations with a few simple JavaScript commands in client web browsers or Node desktop apps.
 
@@ -121,4 +120,3 @@ var pptx = require("pptxgenjs");
 =======
 ## Detecting encoding
 Detecting encoding of a text file is an important work. Please refer to [Encoding.md](./Encoding.md)
->>>>>>> 31ec53a12f547338660d2e7e0ea7f8fe20da2a26
