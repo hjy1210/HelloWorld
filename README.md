@@ -117,6 +117,6 @@ PptxGenJS requires only 2 additional JavaScript libraries:
 npm install pptxgenjs
 
 var pptx = require("pptxgenjs");
-=======
+
 ## Detecting encoding
 Detecting encoding of a text file is an important work. Please refer to [Encoding.md](./Encoding.md)
