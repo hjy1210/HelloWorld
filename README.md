@@ -12,6 +12,7 @@ Following are some git commands:
 * git add *file*
 * git status
 * git commit
+* git log --oneline
 * git push
 * git pull
 * git clone
@@ -24,10 +25,34 @@ Following are some git commands:
 * git add index.html
 * git status
 * git remote add origin *gitub address*
-* git push -u origin master
+* git push origin master
 
 #### Git version with office documents
 **git diff can compare word documents, so we can use git to do version control of office documents.**
+
+Four steps to accompany the goal.
+
+1. install [pandoc](http://pandoc.org/installing.html)
+1. in ~/.editconfig add
+```
+[diff "pandoc"]
+  textconv=pandoc --to=markdown
+  prompt = false
+[alias]
+  wdiff = diff --word-diff=color --unified=1
+```
+3. in .gitattributes of project add
+```
+*.docx diff=pandoc
+```
+4. git diff *file* or git wdiff *file*
+
+[demo](https://github.com/hjy1210/gitwithword)
+
+reference: 
+* [integrate git diffs with word docx files](https://github.com/vigente/gerardus/wiki/Integrate-git-diffs-with-word-docx-files)
+* [External Merge and Diff Tools](https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration)
+* [Adding an existing project to GitHub using the command line](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/)
 
 ## cors
 If restful service, which is an express server, use [cors](https://www.npmjs.com/package/cors) as middleware,
