@@ -107,7 +107,7 @@ Use `npm install -g textract` to install globally.
 `textract file.docx`
 
 ## Markdown Reader
-[Markdown Reader](./another.md) is a Chrome extension which can help displaying mathematics formula in any web page.
+[Markdown Reader](./another.md) is a Chrome extension which can help reading only display style mathematics formula in any web page.
 
 It can display some mathematics formula.
 $$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
@@ -118,12 +118,30 @@ $$ \begin{pmatrix} 1 & 0 \ 0 & 1 \end{pmatrix} $$
 
 ## Github with MathJax
 [Github with MathJax](https://github.com/orsharir/github-mathjax) is a chrome extension which
- add support for LaTeX equations in GitHub repositories, rendering them with an open source [MathJax](https://mathjax.org) library. In example, if you had it install you would see the following lovely equation: $e^{iπ}+1=0$.
+ add support for LaTeX equations in GitHub repositories, rendering them with an open source [MathJax](https://mathjax.org) library. In example, if you had it install you would see the following lovely both inline and display equations: $e^{i\pi}+1=0$.
 
-$$e^{iπ}+1=0$$
+$$e^{i\pi}+1=0$$
 
 Check it with matrix
 $$ \begin{pmatrix} 1 & 0 \ 0 & 1 \end{pmatrix} $$
+
+## PptxGenJS
+[PptxGenJS](https://github.com/gitbrent/PptxGenJS) Quickly and easily create PowerPoint presentations with a few simple JavaScript commands in client web browsers or Node desktop apps.
+
+#### Client Side
+PptxGenJS requires only 2 additional JavaScript libraries:
+```
+<script lang="javascript" src="PptxGenJS/libs/jquery.min.js"></script>
+<script lang="javascript" src="PptxGenJS/libs/jszip.min.js"></script>
+<script lang="javascript" src="PptxGenJS/dist/pptxgen.js"></script>
+```
+#### Node.js
+
+[PptxGenJS NPM Homepage](https://www.npmjs.com/package/pptxgenjs)
+
+npm install pptxgenjs
+
+var pptx = require("pptxgenjs");
 
 ## Detecting encoding
 Detecting encoding of a text file is an important work. Please refer to [Encoding.md](./Encoding.md)
