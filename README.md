@@ -51,7 +51,7 @@ Reference [Getting started](https://facebook.github.io/react-native/docs/getting
 6. use `set JAVA_HOME=c:\program files\android\android studio\jre` to set environment variable JAVA_HOME.
 
 #### react-native sample
-[react-native sample](./React-Redux/react-redux-practice.md).
+[react-native sample](./AwesomeProject/README.md).
 
 Choose appropriate directoy for doing work. For example *d:\work*.
 1. In directory D:\work, execute `react-native init MyApp` to initial react-native project *MyApp* and install necessary components
