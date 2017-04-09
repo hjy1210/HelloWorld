@@ -18,6 +18,12 @@ We can execute [HyperVSwitch.exe](https://unclassified.software/en/apps/hypervsw
 
 Note: It need reboot computer after switching Hyper-V.
 
+## bcdedit command
+* Use command `bcdedit /set hypervisorlaunchtype off` to turn off Hyper-V
+* Use `bcdedit /set hypervisorlaunchtype auto` to turn on Hyper-V
+
+Note: HyperVSwitch is better than bcdedit, because we can first see current status of Hyper-V then decide is it need change.
+
 ## With Hyper-V Activated
 We can execute in
 * .UMP project with local machine.
