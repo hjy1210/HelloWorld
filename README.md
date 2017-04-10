@@ -114,7 +114,10 @@ $$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
 and $E=mc^2$.
 
 But look at following matrix
-$$ \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} $$
+$$ \begin{pmatrix} 
+  1 & 0 \\
+  0 & 1 
+ \end{pmatrix} $$
 ## Github with MathJax
 [Github with MathJax](https://github.com/orsharir/github-mathjax) is a chrome extension which
  add support for LaTeX equations in GitHub repositories, rendering them with an open source [MathJax](https://mathjax.org) library. In example, if you had it install you would see the following lovely both inline and display equations: $e^{i\pi}+1=0$.
@@ -122,7 +125,10 @@ $$ \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} $$
 $$e^{i\pi}+1=0$$
 
 Check it with matrix
-$$ \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} $$
+$$ \begin{pmatrix} 
+  1 & 0 \\ 
+  0 & 1 
+  \end{pmatrix} $$
 
 ## PptxGenJS
 [PptxGenJS](https://github.com/gitbrent/PptxGenJS) Quickly and easily create PowerPoint presentations with a few simple JavaScript commands in client web browsers or Node desktop apps.
