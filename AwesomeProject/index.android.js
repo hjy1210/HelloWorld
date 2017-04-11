@@ -11,25 +11,35 @@ import {
   Text,
   View,
   TouchableHighlight
-} from 'react-native';
+} from 'react-native'
+import FadeInView from './FadeInView'
 
 class MyButton extends Component {
+  constructor(props){
+    super(props)
+    this.state={msg:""}
+    this._onPressButton=this._onPressButton.bind(this)
+  }
   _onPressButton() {
-    console.log("You tapped the button!");
+    //console.log("You tapped the button!");
+    this.setState({msg:"you tapped the button"})
   }
 
   render() {
     return (
+      <View>
       <TouchableHighlight onPress={this._onPressButton}>
         <Text>Button</Text>
       </TouchableHighlight>
+        <Text>{this.state.msg}</Text>
+      </View>
     );
   }
 }
 export default class AwesomeProject extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <FadeInView style={{flex:1, backgroundColor: 'powderblue'}}>
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
@@ -44,8 +54,7 @@ export default class AwesomeProject extends Component {
           Shake or press menu button for dev menu
         </Text>
         <MyButton />
-        <MyButton />
-      </View>
+      </FadeInView>
     );
   }
 }
