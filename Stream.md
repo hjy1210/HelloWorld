@@ -152,6 +152,27 @@ Setting scenecut to 0 is equivalent to setting --no-scenecut.
 `MP4Box -h all` list all options
 
 [MP4Box Documentation](https://gpac.wp.imt.fr/mp4box/mp4box-documentation/)
+
+## What is ffmpeg?
+A complete, cross-platform solution to record, convert and stream audio and video.
+
+We can download ffmpeg binary from [here](http://ffmpeg.zeranoe.com/builds/).
+
+[ffmpeg document](https://ffmpeg.org/documentation.html) is very huge but very useful.
+
+Some mp4 files, which are downloaded from youtube or produced by Microsoft Movie Maker, are not directly compatible with MP4Box. In such case, we can use ffmpeg to normalize it.
+Following is the steps:(Assume mp4 file is test.mp4)
+
+1. execute `ffmpeg -i test.mp4 testFF.mp4`, produce testFF.mp4
+2. execute `mp4box.exe -dash 4000 -frag 4000 -rap -profile baseline -segment-name video/test_V_ -out test_V.mpd testFF.mp4#video`, produce test_V.mpd and corresponding video segments.
+3. execute `mp4box.exe -dash 4000 -frag 4000 -rap -profile baseline -segment-name audio/test_A_ -out test_A.mpd testFF.mp4#audio`, produce test_A.mpd and corresponding audio segments.
+4. merge the AdaptionSet element of test_A.mpd into test_V.mpd as sibling of AdaptionSet element of test_A.mpd.
+5. use test_V.mpd as source of MPEG-DASH player.
+
+Note 1: Above method DO work for [Bitmovin Player](https://bitmovin.com/tutorials/get-started-bitmovin-html5-adaptive-player/). As for dash.js, the video palyer stop at about 70%--80%.
+
+Note 2: ffmpeg with option -dash can produce mpd, video segments, audio segments in single command. Those mpd and segemnts can be used in Bitmovin Player but not dash.js player.
+
 ## TODO
  * Inspect samples in Dash.js.
  * Study [Documentation](http://cdn.dashjs.org/latest/jsdoc/module-MediaPlayer.html) of dash.js
