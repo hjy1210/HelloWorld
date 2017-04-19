@@ -166,7 +166,7 @@ Following is the steps:(Assume mp4 file is test.mp4)
 1. execute `ffmpeg -i test.mp4 testFF.mp4`, produce testFF.mp4
 2. execute `mp4box.exe -dash 4000 -frag 4000 -rap -profile baseline -segment-name video/test_V_ -out test_V.mpd testFF.mp4#video`, produce test_V.mpd and corresponding video segments.
 3. execute `mp4box.exe -dash 4000 -frag 4000 -rap -profile baseline -segment-name audio/test_A_ -out test_A.mpd testFF.mp4#audio`, produce test_A.mpd and corresponding audio segments.
-4. merge the AdaptionSet element of test_A.mpd into test_V.mpd as sibling of AdaptionSet element of test_A.mpd.
+4. merge the AdaptionSet element of test_A.mpd into test_V.mpd as sibling of AdaptionSet element of test_V.mpd.
 5. use test_V.mpd as source of MPEG-DASH player.
 
 Note 1: Above method DO work for [Bitmovin Player](https://bitmovin.com/tutorials/get-started-bitmovin-html5-adaptive-player/). As for dash.js, the video palyer stop at about 70%--80%.
