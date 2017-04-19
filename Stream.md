@@ -171,9 +171,43 @@ Following is the steps:(Assume mp4 file is test.mp4)
 
 Note 1: Above method DO work for [Bitmovin Player](https://bitmovin.com/tutorials/get-started-bitmovin-html5-adaptive-player/). As for dash.js, the video palyer stop at about 70%--80%.
 
-Note 2: ffmpeg with option -dash can produce mpd, video segments, audio segments in single command. Those mpd and segemnts can be used in Bitmovin Player but not dash.js player.
+Note 2: ffmpeg with option -f dash can produce mpd, video segments, audio segments in single command. Those mpd and segemnts can be used in Bitmovin Player but not dash.js player.
+
+## What is Bento4
+Quoted from [bento4](https://www.bento4.com/):
+
+Bento4 is a C++ class library and tools designed to read and write ISO-MP4 files. This format is defined in international specifications ISO/IEC 14496-12, 14496-14 and 14496-15. The format is a derivative of the Apple Quicktime file format, so Bento4 can be used to read and write most Quicktime files as well.
+
+Features:
+* MPEG DASH with fragmented MP4 files, as defined in the international specification ISO/IEC 23009-1
+* MPEG Common Encryption (CENC) as specified in the international specification ISO/IEC 23001-7
+* The PIFF (Protected Interoperable File Format) encrypted, fragmented MP4 format specified by Microsoft and used for encrypted HTTP Smooth Streaming is also supported.
+* Reading and writing 3GPP and iTunes-compatible metadata.
+* ISMA Encrytion and Decryption as defined in the ISMA E&A specification
+* OMA 2.0 and 2.1 DCF/PDCF Encryption and Decryption as defined in the OMA specifications.
+* ISO-MP4 files profiled as part of the  3GPP family of standards.
+* The UltraViolet (DECE) CFF (Common File Format).
+* MPEG CMAF (Common Media Application Format)
+* Parsing and multiplexing of H.264 (AVC) video and AAC audio elementary streams
+* Support for multiple DRM systems that are compatible with MP4-formatted content (usually leveraging CENC Common Encryption), such as Marlin, PlayReady, Widevine and FairPlay.
+* Support for a wide range of codecs, including H.264 (AVC), H.265 (HEVC), AAC, AC3 and eAC3 (Dolby Digital), DTS, ALAC, and many more.
+* Generation of HLS (HTTP Live Streaming), including HLS with fMP4 (Fragmented MP4) segments for a dual DASH/HLS output.
+
+[bento4 documentation](https://www.bento4.com/documentation/).
+
+## Use ffmpeg+bento4 to encode MPEG-DASH
+Assume source mp4 is test.mp4, following are the procedures:
+1. execute `ffmpeg -i test.mp4 test_FF.mp4`, produce test_FF.mp4.
+2. execute `mp4fragment test_FF.mp4 test_FF_fragmented.mp4`, produce test_FF_fragmented.mp4.
+3. execute `mp4dash test_FF_fragmented.mp4`, produce the mpd file and corresponding audio/video segments in subdirectory output.
+
+Note 1: mp4dash is a batch file, which need python(>=2.6), python 3 is not supported.
+
+Note 2: **above procedures DO work for mp4 files created by Microsoft Movie Maker. Can be played correctly in dash.js palyer**.
+
+
 
 ## TODO
  * Inspect samples in Dash.js.
- * Study [Documentation](http://cdn.dashjs.org/latest/jsdoc/module-MediaPlayer.html) of dash.js
+ * Study [dash.js Documentation](http://cdn.dashjs.org/latest/jsdoc/module-MediaPlayer.html) of dash.js
  
