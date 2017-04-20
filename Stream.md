@@ -203,7 +203,10 @@ Assume source mp4 is test.mp4, following are the procedures:
 
 Note 1: mp4dash is a batch file, which need python(>=2.6), python 3 is not supported.
 
-Note 2: **above procedures DO work for mp4 files created by Microsoft Movie Maker. Can be played correctly in dash.js palyer**.
+Note 2: **above procedures DO work for mp4 files created by Microsoft Movie Maker. Can be played correctly in dash.js palyer and shaka player**.
+
+## shaka player
+[shaka player](https://github.com/google/shaka-player) is another free dash player which is created by google. It's documentation is very good.
 
 
 
