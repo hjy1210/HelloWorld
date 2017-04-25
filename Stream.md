@@ -169,9 +169,11 @@ Following is the steps:(Assume mp4 file is test.mp4)
 4. merge the AdaptionSet element of test_A.mpd into test_V.mpd as sibling of AdaptionSet element of test_V.mpd.
 5. use test_V.mpd as source of MPEG-DASH player.
 
-Note 1: Above method DO work for [Bitmovin Player](https://bitmovin.com/tutorials/get-started-bitmovin-html5-adaptive-player/). As for dash.js, the video palyer stop at about 70%--80%.
+Note 1: above steps(2,3,4) can be combined as `mp4box.exe -dash 4000 -frag 4000 -rap -profile baseline -out test_V.mpd testFF.mp4#video testFF.mp4#audio`
 
-Note 2: ffmpeg with option -f dash can produce mpd, video segments, audio segments in single command. Those mpd and segemnts can be used in Bitmovin Player but not dash.js player.
+Note 2: Above method DO work for [Bitmovin Player](https://bitmovin.com/tutorials/get-started-bitmovin-html5-adaptive-player/). As for dash.js, the video palyer stop at about 70%--80%.
+
+Note 3: ffmpeg with option -f dash can produce mpd, video segments, audio segments in single command. Those mpd and segemnts can be used in Bitmovin Player but not dash.js player.
 
 ## What is Bento4
 Quoted from [bento4](https://www.bento4.com/):
