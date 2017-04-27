@@ -171,9 +171,40 @@ Following is the steps:(Assume mp4 file is test.mp4)
 
 Note 1: above steps(2,3,4) can be combined as `mp4box.exe -dash 4000 -frag 4000 -rap -profile baseline -out test_V.mpd testFF.mp4#video testFF.mp4#audio`
 
-Note 2: Above method DO work for [Bitmovin Player](https://bitmovin.com/tutorials/get-started-bitmovin-html5-adaptive-player/). As for dash.js, the video palyer stop at about 70%--80%.
+Note 2: `ffmpeg -y -i test.mp4 -an -s  640x360 test360.mp4 2>test360.txt` will log message in test360.txt. Inspect this file, we can see ffmpeg using x264 internally.
 
-Note 3: ffmpeg with option -f dash can produce mpd, video segments, audio segments in single command. Those mpd and segemnts can be used in Bitmovin Player but not dash.js player.
+Note 3: Above method DO work for [Bitmovin Player](https://bitmovin.com/tutorials/get-started-bitmovin-html5-adaptive-player/). As for dash.js, the video palyer stop at about 70%--80%.
+
+Note 4: ffmpeg with option -f dash can produce mpd, video segments, audio segments in single command. Those mpd and segemnts can be used in Bitmovin Player but not dash.js player.
+
+Note 5: Followin is a successful demo：
+```
+# OK 3:26 Input Mia.mp4 to Microsoft Movie Maker to produce MMMMia.mp4
+ffmpeg -y -i ..\MMMMia.mp4 -s 640x360 test.mp4
+ffmpeg -y -i ..\MMMMia.mp4 -s 480x270 -an test2.mp4
+mp4box -dash 1000 -rap -profile full -out full/test.mpd test.mp4#video test.mp4#audio test2.mp4
+
+# OK 3:45
+ffmpeg -y -i ..\AdeleSD.mp4 -s 640x360 test.mp4
+ffmpeg -y -i ..\AdeleSD.mp4 -s 480x270 -an test2.mp4
+mp4box -dash 1000 -rap -profile full -out full/test.mpd test.mp4#video test.mp4#audio test2.mp4
+
+# OK 3:45
+ffmpeg -y -i ..\AdeleHD.mp4 -s 640x360 test.mp4
+ffmpeg -y -i ..\AdeleHD.mp4 -s 480x270 -an test2.mp4
+mp4box -dash 1000 -rap -profile full -out full/test.mpd test.mp4#video test.mp4#audio test2.mp4
+
+# OK 17:53
+ffmpeg -y -i ..\Full720.mp4 -s 640x360 test.mp4
+ffmpeg -y -i ..\Full720.mp4 -s 480x270 -an test2.mp4
+mp4box -dash 1000 -rap -profile full -out full/test.mpd test.mp4#video test.mp4#audio test2.mp4
+
+# OK 17:53
+ffmpeg -y -i ..\Full.mp4 -s 640x360 test.mp4
+ffmpeg -y -i ..\Full.mp4 -s 480x270 -an test2.mp4
+mp4box -dash 1000 -rap -profile full -out full/test.mpd test.mp4#video test.mp4#audio test2.mp4
+
+```
 
 ## What is Bento4
 Quoted from [bento4](https://www.bento4.com/):
