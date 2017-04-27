@@ -177,7 +177,7 @@ Note 3: Above method DO work for [Bitmovin Player](https://bitmovin.com/tutorial
 
 Note 4: ffmpeg with option -f dash can produce mpd, video segments, audio segments in single command. Those mpd and segemnts can be used in Bitmovin Player but not dash.js player.
 
-Note 5: Followin is a successful demo：
+Note 5: Following is a successful demo, can be played in dash.js player：
 ```
 # OK 3:26 Input Mia.mp4 to Microsoft Movie Maker to produce MMMMia.mp4
 ffmpeg -y -i ..\MMMMia.mp4 -s 640x360 test.mp4
