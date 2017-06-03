@@ -97,6 +97,16 @@ Compile and bundle index.android.js into selected AVD
 2. open selcted AMD, the *MyApp* is in work.
 3. modify index.android.js and execute `react-native run-android` to rebundle index.android.js into selected AMD.
 
+Reference [next version getting started](https://facebook.github.io/react-native/releases/next/docs/getting-started.html#content),
+
+1. npm install -g create-react-native-app
+2. `create-react-native-app AwesomeProject`, `cd AwesomeProject`, `npm start`
+3. direct use mobile device with **Expo** installed, no need usb connect, no need Android Studio!
+
+Note: Google play Expo located at [here](https://expo.io/tools)
+
+Note: Windows Hyper-V feature should be uninstalled/closed/disable.
+
 ## textract
 [Textract](https://www.npmjs.com/package/textract) is a node module, its source code is [here](https://github.com/dbashford/textract), which can extract text form .docx, .doc, .pdf, ...。
 
