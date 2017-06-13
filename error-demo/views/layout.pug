@@ -3,5 +3,11 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+    script(type="text/x-mathjax-config").
+      MathJax.Hub.Config({
+        extensions: ["TeX/AMSmath.js"],
+      });
+    script(type="text/javascript",src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML")
+    body
+      p \(x^2 \boxed{12} \fbox{34} x=\frac{\sqrt{3+\fbox{12}}}{\fbox{A}}\)
+      block content
