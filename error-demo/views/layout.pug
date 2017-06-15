@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type="text/x-mathjax-config").
+      MathJax.Hub.Config({
+        extensions: [],
+      });
+    script(type="text/javascript",src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML")
+    body
+      p First paragraph.
+      p Second paragraph.
+      div(hidden).
+        \(\newcommand{\water}{H_{2}O} \newcommand{\ceec}[1]{\fbox{#1}}  \newcommand{\ceeb}[1]{\bbox[border:0.2px dotted black]{#1}}\)
+      p \(x^2 \boxed{12} \fbox{34} x=\frac{\sqrt{3+\fbox{12}}}{\fbox{A}} \water \water \mbox{\water 台灣}\) 
+      p \(\frac{\ceec{3}}{\sqrt{\ceec{15}}} \frac{\ceec{3}}{\sqrt{\ceeb{15}}} \bbox[red,border:3px solid blue,15px]{x+y}\)
+      block content
