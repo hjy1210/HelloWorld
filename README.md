@@ -150,3 +150,25 @@ var pptx = require("pptxgenjs");
 
 ## Detecting encoding
 Detecting encoding of a text file is an important work. Please refer to [Encoding.md](./Encoding.md)
+
+## cygwin
+Cygwin is:
+
+* a large collection of GNU and Open Source tools which provide functionality similar to a Linux distribution on Windows.
+* a DLL (cygwin1.dll) which provides substantial POSIX API functionality.
+
+https://www.cygwin.com/ is office site of Cygwin. The Setup binary is setup-x86_64.exe.
+
+After install, /cygdrive/d corresponding to D: drive.
+
+## coursebuilder
+[coursebuilder](https://edu.google.com/openonline/index.html) is a opensource product of google.
+
+First download latest version "Course Builder v1.11.1"
+from [here](https://edu.google.com/openonline/course-builder/downloads/index.html).
+
+After unzip：
+
+1. In command prompt, elevated as administrator, in directory d:\coursebuilder, execute script\windows_start_local.bat,we start  local GAE server.
+2. browse http://localhost:8081, we can create course.
+3. we can use latex format formula in question.
