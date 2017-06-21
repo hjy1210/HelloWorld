@@ -182,3 +182,7 @@ After unzip：
 1. In command prompt, elevated as administrator, in directory d:\coursebuilder, execute script\windows_start_local.bat,we start  local GAE server.
 2. browse http://localhost:8081, we can create course.
 3. we can use latex format formula in question.
+
+## nodejs-demo
+1. 練習 xmldom : Xml DOM
+2. 練習 xml2js : conversion between xml file and json file.

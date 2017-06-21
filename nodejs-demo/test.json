@@ -1,0 +1,33 @@
+{
+  "bookstore": {
+    "book": [
+      {
+        "$": {
+          "category": "cooking"
+        },
+        "title": [
+          {
+            "_": "Everyday Italian",
+            "$": {
+              "lang": "en"
+            }
+          }
+        ],
+        "author": [
+          {
+            "_": "Giada  Laurentiis",
+            "span": [
+              "De"
+            ]
+          }
+        ],
+        "year": [
+          "2005"
+        ],
+        "price": [
+          "30.00"
+        ]
+      }
+    ]
+  }
+}

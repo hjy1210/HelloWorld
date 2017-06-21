@@ -1,0 +1,8 @@
+<bookstore>
+  <book category="cooking">
+    <title lang="en">Everyday Italian</title>
+    <author>Giada <span>De</span> Laurentiis</author>
+    <year>2005</year>
+    <price>30.00</price>
+  </book>
+</bookstore>
