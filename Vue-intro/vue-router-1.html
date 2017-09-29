@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Router Example 1</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  
+</head>
+<body>
+  <div id="app">
+    <h2> First example of router</h2>
+    <p>
+        <router-link :to="{path:'/user/Yang'}">Go to user Yang</router-link>
+        <router-link to="/user/Huang">Go to user Huang</router-link>
+        <router-link to="/bar">Go to bar</router-link>
+    </p>
+    <router-view></router-view>
+  </div>
+  <script>
+    const user={
+      props:['id'],
+      template:`
+        <div class="user">
+          <h2> user {{id}}</h2>
+          <!-- :to="binding expression VS  to="literal path" -->
+          <router-link :to="'/user/'+id+'/profile'">profile</router-link>
+          <router-link :to="'/user/'+id+'/posts'">posts</router-link>
+          <router-view></router-view>
+        </div>`,
+      watch:{
+        '$route' (to, from){
+          console.log(`to:${to.fullPath}, from:${from.fullPath}`)
+        }
+      }
+    }
+    const bar={template:"<div>bar</div>"}
+    const home={
+      props:['id'],
+      template:`<div>
+          home of {{id}}
+        </div>`
+    }
+    const profile={
+      props:["id"],
+      template:"<div>profile of {{id}}</div>"
+    }
+    const posts={
+      props:["id"],
+      template:"<div>posts of {{id}}</div>"
+    }
+    const routes=[
+      { 
+        path:"/user/:id",
+        component:user,
+        props:true,
+        children:[
+          {
+            path:"",
+            component:home,
+            props:true
+          },
+          {
+            path:'profile',
+            component:profile,
+            props:true
+          },
+          {
+            path:"posts",
+            component:posts,
+            props:true
+          }
+        ]
+      },
+      {
+        path:"/bar",
+        component:bar
+      }
+    ]
+    const router=new VueRouter({
+      routes
+    })
+    vm=new Vue({
+      router
+    }).$mount("#app")
+  </script>
+  
+</body>
+</html>

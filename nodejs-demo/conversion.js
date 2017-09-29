@@ -45,25 +45,14 @@ function xml2json0(xmlfile,jsonfile) {
   })
 }
 
-/*json2xml("d:\\work\\data\\sat2_chi_2016_01.json","d:\\work\\data\\sat2_chi_2016_01.xml")
-json2xml("d:\\work\\data\\sat2_chi_2016_02.json","d:\\work\\data\\sat2_chi_2016_02.xml")
-json2xml("d:\\work\\data\\sat2_eng_2016_01.json","d:\\work\\data\\sat2_eng_2016_01.xml")
-json2xml("d:\\work\\data\\sat2_eng_2016_02.json","d:\\work\\data\\sat2_eng_2016_02.xml")
-json2xml("d:\\work\\data\\sat2_eng_2016_36_37.json","d:\\work\\data\\sat2_eng_2016_36_37.xml")
-json2xml("d:\\work\\data\\sat2_eng_2016_21_30.json","d:\\work\\data\\sat2_eng_2016_21_30.xml")
-json2xml("d:\\work\\data\\sat2_his_2016_01.json","d:\\work\\data\\sat2_his_2016_01.xml")
-json2xml("d:\\work\\data\\sat2_his_2016_02.json","d:\\work\\data\\sat2_his_2016_02.xml")
-json2xml("d:\\work\\data\\sat2_his_2016_03.json","d:\\work\\data\\sat2_his_2016_03.xml")
-json2xml("d:\\work\\data\\sat2_mathb_2016_01.json","d:\\work\\data\\sat2_mathb_2016_01.xml")
-json2xml("d:\\work\\data\\sat2_mathb_2016_02.json","d:\\work\\data\\sat2_mathb_2016_02.xml")
-json2xml("d:\\work\\data\\sat2_mathb_2016_A.json","d:\\work\\data\\sat2_mathb_2016_A.xml")
-json2xml("d:\\work\\data\\sat2_mathb_2016_B.json","d:\\work\\data\\sat2_mathb_2016_B.xml")
-json2xml("d:\\work\\data\\sat2_geo_2016_02\\sat2_geo_2016_02.json","d:\\work\\data\\sat2_geo_2016_02\\sat2_geo_2016_02.xml")
-json2xml("d:\\work\\data\\sat2_geo_2016_04\\sat2_geo_2016_04.json","d:\\work\\data\\sat2_geo_2016_04\\sat2_geo_2016_04.xml")
-json2xml("d:\\work\\data\\telc_sample_1\\telc_sample_1.json","d:\\work\\data\\telc_sample_1\\telc_sample_1.xml")
-json2xml("d:\\work\\data\\telc_sample_2\\telc_sample_2.json","d:\\work\\data\\telc_sample_2\\telc_sample_2.xml")*/
-
-//json2xml(process.argv[2],process.argv[3])
-xml2json(process.argv[2],process.argv[3])
-
-//node conversion.js sat2_chm_2016_02.xml sat2_chm_2016_02.json
+var msg="Usage: \nnode conversion.js tojson <xmlfile> <jsonfile>\nnode conversion.js toxml <jsonfile> <xmlfile>"
+//console.log(process.argv)
+if (process.argv.length!=5 || (process.argv[2]!="toxml" && process.argv[2]!="tojson")){
+  console.log(msg)
+  return
+}
+if (process.argv[2]==="toxml"){
+  json2xml(process.argv[3],process.argv[4])
+} else {
+  xml2json(process.argv[3],process.argv[4])
+}
