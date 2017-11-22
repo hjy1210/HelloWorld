@@ -139,10 +139,10 @@ $$e^{i\pi}+1=0$$
 
 Check it with matrix
 
-$$\begin{bmatrix}a & b\\c & d\end{bmatrix}$$
+$$\begin{bmatrix}a & b\\ c_1 & d\end{bmatrix}$$
 
 $$ \begin{pmatrix} 
-  1 & 0 \\ 
+  1 & 0 \cr 
   0 & 2 
   \end{pmatrix} $$
 
@@ -151,7 +151,7 @@ $$
 $$
 
 $$|x|=\left\{\begin{array}{rl}
--x&\mbox{if $x<0$}\\
+-x&\mbox{if $x<0$}\cr
 x&\mbox{otherwise}
 \end{array}\right.$$
 
