@@ -127,7 +127,7 @@ and $E=mc^2$.
 But look at following matrix
 
 $$ \begin{pmatrix} 
-  1 & 0 \\
+  1 & 0 \cr
   0 & 1 
  \end{pmatrix} $$
 
@@ -139,7 +139,7 @@ $$e^{i\pi}+1=0$$
 
 Check it with matrix
 
-$$\begin{bmatrix}a & b\\ c_1 & d\end{bmatrix}$$
+$$\begin{bmatrix}a & b\cr c_1 & d\end{bmatrix}$$
 
 $$ \begin{pmatrix} 
   1 & 0 \cr 
