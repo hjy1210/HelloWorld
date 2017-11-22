@@ -130,7 +130,7 @@ $$ \begin{pmatrix}
   1 & 0 \\
   0 & 1 
  \end{pmatrix} $$
- 
+
 ## Github with MathJax
 [Github with MathJax](https://github.com/orsharir/github-mathjax) is a chrome extension which
  add support for LaTeX equations in GitHub repositories, rendering them with an open source [MathJax](https://mathjax.org) library. In example, if you had it install you would see the following lovely both inline and display equations: $e^{i\pi}+1=0$.
@@ -143,8 +143,17 @@ $$\begin{bmatrix}a & b\\c & d\end{bmatrix}$$
 
 $$ \begin{pmatrix} 
   1 & 0 \\ 
-  0 & 1 
+  0 & 2 
   \end{pmatrix} $$
+
+$$
+{n+1\choose k} = {n\choose k} + {n \choose k-1}
+$$
+
+$$|x|=\left\{\begin{array}{rl}
+-x&\mbox{if $x<0$}\\
+x&\mbox{otherwise}
+\end{array}\right.$$
 
 ## PptxGenJS
 [PptxGenJS](https://github.com/gitbrent/PptxGenJS) Quickly and easily create PowerPoint presentations with a few simple JavaScript commands in client web browsers or Node desktop apps.
