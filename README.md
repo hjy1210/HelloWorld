@@ -120,10 +120,12 @@ Use `npm install -g textract` to install globally.
 [Markdown Reader](./another.md) is a Chrome extension which can help reading only display style mathematics formula in any web page.
 
 It can display some mathematics formula.
+
 $$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
 and $E=mc^2$.
 
 But look at following matrix
+
 $$ \begin{pmatrix} 
   1 & 0 \\
   0 & 1 
@@ -135,6 +137,8 @@ $$ \begin{pmatrix}
 $$e^{i\pi}+1=0$$
 
 Check it with matrix
+$\begin{bmatrix}a & b\\c & d\end{bmatrix}$
+
 $$ \begin{pmatrix} 
   1 & 0 \\ 
   0 & 1 
