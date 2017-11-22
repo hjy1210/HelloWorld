@@ -1,6 +1,6 @@
 # vue
 
-> A Vue.js project
+A Vue.js project based on [scotch.io course](https://scotch.io/courses/build-an-online-shop-with-vue)
 
 ## Build Setup
 
