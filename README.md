@@ -130,6 +130,7 @@ $$ \begin{pmatrix}
   1 & 0 \\
   0 & 1 
  \end{pmatrix} $$
+ 
 ## Github with MathJax
 [Github with MathJax](https://github.com/orsharir/github-mathjax) is a chrome extension which
  add support for LaTeX equations in GitHub repositories, rendering them with an open source [MathJax](https://mathjax.org) library. In example, if you had it install you would see the following lovely both inline and display equations: $e^{i\pi}+1=0$.
@@ -137,7 +138,8 @@ $$ \begin{pmatrix}
 $$e^{i\pi}+1=0$$
 
 Check it with matrix
-$\begin{bmatrix}a & b\\c & d\end{bmatrix}$
+
+$$\begin{bmatrix}a & b\\c & d\end{bmatrix}$$
 
 $$ \begin{pmatrix} 
   1 & 0 \\ 
