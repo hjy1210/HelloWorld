@@ -1,0 +1,58 @@
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block" alttext="\ce{H2SO4} \pu{1.0e-20}">
+  <mrow class="MJX-TeXAtom-ORD">
+    <mrow class="MJX-TeXAtom-ORD">
+      <mi mathvariant="normal">H</mi>
+    </mrow>
+    <msub>
+      <mrow class="MJX-TeXAtom-ORD">
+        <mrow class="MJX-TeXAtom-ORD">
+          <mpadded width="0">
+            <mphantom>
+              <mi>X</mi>
+            </mphantom>
+          </mpadded>
+        </mrow>
+      </mrow>
+      <mrow class="MJX-TeXAtom-ORD">
+        <mrow class="MJX-TeXAtom-ORD">
+          <mpadded height="0">
+            <mn>2</mn>
+          </mpadded>
+        </mrow>
+      </mrow>
+    </msub>
+    <mrow class="MJX-TeXAtom-ORD">
+      <mi mathvariant="normal">S</mi>
+      <mi mathvariant="normal">O</mi>
+    </mrow>
+    <msub>
+      <mrow class="MJX-TeXAtom-ORD">
+        <mrow class="MJX-TeXAtom-ORD">
+          <mpadded width="0">
+            <mphantom>
+              <mi>X</mi>
+            </mphantom>
+          </mpadded>
+        </mrow>
+      </mrow>
+      <mrow class="MJX-TeXAtom-ORD">
+        <mrow class="MJX-TeXAtom-ORD">
+          <mpadded height="0">
+            <mn>4</mn>
+          </mpadded>
+        </mrow>
+      </mrow>
+    </msub>
+  </mrow>
+  <mrow class="MJX-TeXAtom-ORD">
+    <mn>1.0</mn>
+    <mo>&#x22C5;<!-- ⋅ --></mo>
+    <msup>
+      <mn>10</mn>
+      <mrow class="MJX-TeXAtom-ORD">
+        <mo>&#x2212;<!-- − --></mo>
+        <mn>20</mn>
+      </mrow>
+    </msup>
+  </mrow>
+</math>
