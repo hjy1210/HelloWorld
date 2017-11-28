@@ -1,0 +1,106 @@
+
+\documentclass{creport}
+\usepackage{metalogo}
+\usepackage{xeCJK}
+\setCJKmainfont{微軟正黑體}  %textrm
+\setCJKsansfont{宋体}	 % textsf
+\setCJKmonofont{宋体}  % texttt
+\setCJKmathfont{宋体}
+\newCJKfontfamily[song]\song{宋体} %Now we can use \song to change chinese font to 宋体
+\newCJKfontfamily[kai]\kai{標楷體} %Now we can use \kai to change chinese font to 標楷體
+\newCJKfontfamily[hei]\hei{微軟正黑體} %Now we can use \hei to change chinese font to 微軟正黑體
+%\xeCJKsetup{AutoFakeBold=true}
+%\xeCJKsetup{AutoFakeSlant = true}
+%\setCJKmainfont{SimSun}
+\begin{document}
+\chapter{使用 xeCJK}
+\XeLaTeX 擴充 \LaTeX 的功能，變成可以處理以 UTF-8 編碼的萬國碼(Unicode)。xeCJK 讓 \XeLaTeX 處理中文相關的問題更得心應手。
+\section{設定中文字型}
+要設定中文字型，首先要知道系統有哪些中文字型可供使用。\XeTeX 通常使用 fontconfig 尋找和選用字型，
+我們可以用fc-list 命令顯示可用的字體。在 Windows 的命令視窗可以用指令
+\begin{verbatim}
+  fc-list -f "%{family}\n" :lang=zh > zhfont.txt
+\end{verbatim}
+將中文的字型資訊存到 zhfont.txt 檔案中。以我的系統為例，部分內容如下
+\begin{verbatim}
+DFKai-SB,標楷體
+Microsoft YaHei,微软雅黑
+MingLiU_HKSCS,細明體_HKSCS
+Microsoft JhengHei,微軟正黑體,微軟正黑體 Light
+Microsoft YaHei,微软雅黑
+Microsoft YaHei UI
+Microsoft JhengHei UI,Microsoft JhengHei UI Light
+Microsoft JhengHei,微軟正黑體
+Microsoft JhengHei UI
+Microsoft JhengHei UI
+Microsoft YaHei UI,Microsoft YaHei UI Light
+Microsoft YaHei UI
+SimSun,宋体
+NSimSun,新宋体
+Microsoft YaHei,微软雅黑,Microsoft YaHei Light,微软雅黑 Light
+MingLiU,細明體
+PMingLiU,新細明體
+Microsoft JhengHei,微軟正黑體
+\end{verbatim}
+有了字體名稱，我們可以在文類的導言區中，用下列指令
+\begin{verbatim}
+\usepackage{xeCJK}
+\setCJKmainfont{微軟正黑體}  %textrm
+\setCJKsansfont{宋体}	 % textsf
+\setCJKmonofont{宋体}  % texttt
+\setCJKmathfont{宋体}
+\newCJKfontfamily[song]\song{宋体}
+%Now we can use \song to change chinese font to 宋体
+\newCJKfontfamily[kai]\kai{標楷體} 
+%Now we can use \kai to change chinese font to 標楷體
+\newCJKfontfamily[hei]\hei{微軟正黑體} 
+%Now we can use \hei to change chinese font to 微軟正黑體
+\end{verbatim}
+設定在 textrm, textsf, texttt 環境裡分別使用微軟正黑體、宋体、宋体。
+而且，
+可以用指令 \verb+\song, \kai, \hei+
+分別 切換到宋体、標楷體、微軟正黑體。
+
+\section{設定文類(documentclass)}
+
+\LaTeX 本身有article, report, book, beamer 等文類，我們可以略加修改當作適合中文的文類。
+
+以 report 為例，report.cls 在 "MikTex 2.9/tex/latex/base" 資料夾中，複製一份命名creport.cls。
+在creport.cls裡面進行下面的修改：
+\begin{verbatim}
+"\@chapapp\ \thechapter.\ %" 改成 "\@chapapp\ \thechapter 章 \ %" (兩處)
+"\@chapapp\space\thechapter." 改成 "\@chapapp\space\thechapter 章" (兩處)
+"\partname\nobreakspace\thepart" 改成 "\partname\nobreakspace\thepart\ 部"(一處)
+\end{verbatim}
+並將 \verb+\contentsname,...,\abstractname+等指令代表的英文字，
+如contents,...,abstract等改成目錄，...，摘要等等，如下:
+\begin{verbatim}
+\newcommand\contentsname{目錄}
+\newcommand\listfigurename{圖清單}
+\newcommand\listtablename{表清單}
+\newcommand\bibname{參考書目}
+\newcommand\indexname{索引}
+\newcommand\figurename{圖}
+\newcommand\tablename{表}
+\newcommand\partname{第}
+\newcommand\chaptername{第}
+\newcommand\appendixname{附錄}
+\newcommand\abstractname{摘要}
+\end{verbatim}
+再將 \verb+\ProvidesClass{report}+ 修改成 \verb+\ProvidesClass{creport}+。
+
+最後，因為 MikTex 利用功能名稱資料庫來加快日常的作業，而我們新加了creport.cls，
+必須更新功能名稱資料庫才能正常運作。因此，我們到 MikTex Setting 工具 General 標籤頁裡，
+按下 Refresh FNDB 按鈕，完成功能名稱資料庫的更新。
+
+ 
+\chapter{雜項}
+中華民國\textbf{臺灣}\LaTeX \textsf{示例}。
+
+\kai 標楷體 \song 宋体 \hei \textbf{微軟正黑體}
+%\CJKfontspec[Scale=0.962216]{細明體} 細明體 % warning : Font 細明體 does not contain script 'CJK', 'Latin' script used instead.
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{xecjk}
+
+\end{document}

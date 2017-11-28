@@ -1,0 +1,44 @@
+
+\documentclass[fontset = none]{ctexrep}
+\usepackage{metalogo}
+\setCJKmainfont{微軟正黑體}  %正體中文字形中，微軟正黑體有粗體
+\setCJKsansfont{標楷體}
+\setCJKmonofont{標楷體}
+%\setCJKmathfont{標楷體}
+%\setCJKfamilyfont{ming}{細明體} %'細明體' does not contain script 'CJK'
+\setCJKfamilyfont{kai}{標楷體}
+\setCJKfamilyfont{hei}{微軟正黑體}
+\newcommand{\hei}{\CJKfamily{hei}} % 細明體
+\newcommand{\kai}{\CJKfamily{kai}} % 標楷體
+%\setCJKromanfont{細明體}
+\ctexset{
+  space=auto,
+  autoindent=false,
+  section={
+    name={第,節},
+    number={\arabic{chapter}.\arabic{section}},
+  },
+  chapter={
+    name={第,章},
+    number=\chinese{chapter},
+  },
+  part/name = {第,部分},
+  abstractname = 摘要,
+  appendixname = 附錄,
+  figurename={圖},
+  indexname={索引},
+  contentsname = {目錄},
+  listfigurename = {插圖列表},
+  listtablename = {表格列表},
+  proofname = 證明 ,
+  bibname = {參考文獻}
+}
+\setlength\parindent{0pt}
+\begin{document}
+\nocite{*}
+\include{ctexsetup}
+%\include{misc}
+
+\bibliographystyle{plain}
+\bibliography{ctex}
+\end{document}
