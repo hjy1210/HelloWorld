@@ -34,6 +34,7 @@ build/Release
 **/build/
 bundle.js
 *.bundle.js
+baseline/
 
 # Dependency directories
 node_modules/
