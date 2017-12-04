@@ -35,6 +35,7 @@ build/Release
 bundle.js
 *.bundle.js
 baseline/
+onDemand/
 
 # Dependency directories
 node_modules/

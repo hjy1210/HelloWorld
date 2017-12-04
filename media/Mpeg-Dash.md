@@ -13,16 +13,16 @@
 d:\ffmpeg\bin\ffmpeg -y -i %1 -c:a aac -ac 2 -ab 128k -c:v libx264 -x264opts keyint=24:min-keyint=24:no-scenecut -b:v 1500k -maxrate 1500k -bufsize 1000k -vf "scale=1280:720,fps=24" %1_720.mp4
 d:\ffmpeg\bin\ffmpeg -y -i %1 -c:a aac -ac 2 -ab 128k -c:v libx264 -x264opts keyint=24:min-keyint=24:no-scenecut -b:v  800k -maxrate  800k -bufsize  500k -vf "scale=960:540,fps=24" %1_540.mp4
 d:\ffmpeg\bin\ffmpeg -y -i %1 -c:a aac -ac 2 -ab 128k -c:v libx264 -x264opts keyint=24:min-keyint=24:no-scenecut -b:v  400k -maxrate  400k -bufsize  400k -vf "scale=640:360,fps=24" %1_360.mp4
-"c:\Program Files\GPAC\mp4box.exe" -dash 2000 -frag 2000 -rap -profile baseline -segment-name %1_360V_ -out baseline/%1_360V.mpd %1_360.mp4#video
-"c:\Program Files\GPAC\mp4box.exe" -dash 2000 -frag 2000 -rap -profile baseline -segment-name %1_540V_ -out baseline/%1_540V.mpd %1_540.mp4#video
-"c:\Program Files\GPAC\mp4box.exe" -dash 2000 -frag 2000 -rap -profile baseline -segment-name %1_720V_ -out baseline/%1_720V.mpd %1_720.mp4#video
-"c:\Program Files\GPAC\mp4box.exe" -dash 2000 -frag 2000 -rap -profile baseline -segment-name %1_720A_ -out baseline/%1_720A.mpd %1_720.mp4#audio
+"c:\Program Files\GPAC\mp4box.exe" -dash 2000 -frag 2000 -rap -profile onDemand -segment-name %1_360V_ -out onDemand/%1_360V.mpd %1_360.mp4#video
+"c:\Program Files\GPAC\mp4box.exe" -dash 2000 -frag 2000 -rap -profile onDemand -segment-name %1_540V_ -out onDemand/%1_540V.mpd %1_540.mp4#video
+"c:\Program Files\GPAC\mp4box.exe" -dash 2000 -frag 2000 -rap -profile onDemand -segment-name %1_720V_ -out onDemand/%1_720V.mpd %1_720.mp4#video
+"c:\Program Files\GPAC\mp4box.exe" -dash 2000 -frag 2000 -rap -profile onDemand -segment-name %1_720A_ -out onDemand/%1_720A.mpd %1_720.mp4#audio
 ```
 使用方法如下：
 ```
 dashify input.mp4
 ```
-會在 baseline 子目錄產生 input.mp4_720V.mpd,input.mp4_540V.mpd,input.mp4_360V.mpd,input.mp4_720A.mpd以及一大堆的影音片段檔案。前三個mpd檔分別是1280x720,960x540,640x360的影片片段目錄，第四個是聲音片段的目錄。
+會在 onDemand 子目錄產生 input.mp4_720V.mpd,input.mp4_540V.mpd,input.mp4_360V.mpd,input.mp4_720A.mpd以及影音檔案。前三個mpd檔分別是1280x720,960x540,640x360的影片片段目錄，第四個是聲音片段的目錄。
 
 手動將這四個mpd合併成完整的目錄output_AV.mpd，方法如下：
 1. 將 input.mp4_720V.mpd 複製到 output_AV.mpd。
@@ -56,7 +56,7 @@ input.mp4_720A.mpd 抄過來的。
 </head>
 <body>
   <div>
-    <video data-dashjs-player src="http://localhost:3000/baseline/output_AV.mpd" controls></video>
+    <video data-dashjs-player src="http://localhost:3000/onDemand/output_AV.mpd" controls></video>
   </div>
 </body>
 </html>
@@ -96,6 +96,9 @@ file Adele2.mkv_720.mp4
 d:\ffmpeg\bin\ffmpeg -f concat -safe 0 -i mylist.txt -c copy two.mp4
 ```
 會將兩個檔案 adele1.webm_720.mp4 與 Adele2.mkv_720.mp4 銜接成 two.mp4。
+
+注意：要用上述方法銜接檔案，兩個檔案的video size/Aspect Ratio必須相同。
+若兩個檔案的video size 不同，可用MovieMaker來串接。
 ```
 ffmpeg -codes
 ```

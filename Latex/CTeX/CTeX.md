@@ -15,7 +15,7 @@ article, book, beamer 相對應，處理了中文與西文不相同的部分。
 詳 [learnctex.pdf](learnctex.pdf)
 
 ## Reference
-* [Ctex 宏集⼿册](ftp://ftp.ccu.edu.tw/pub/tex/language/chinese/ctex/ctex.pdf)
-* [xecjk 宏包]( http://ftp.yzu.edu.tw/CTAN/macros/xetex/latex/xecjk/xeCJK.pdf)
+* [Ctex 宏集⼿册](http://mirrors.ibiblio.org/CTAN/language/chinese/ctex/ctex.pdf)
+* [xecjk 宏包](http://ftp.yzu.edu.tw/CTAN/macros/xetex/latex/xecjk/xeCJK.pdf)
 
 
