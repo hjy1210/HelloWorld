@@ -50,6 +50,9 @@ If you do not want install, you can play with [DASH Reference Client 2.5.0](http
 
 ## How to produce materials for dash.js
 
+成功的步驟請看[Mpeg-Dash.md](Mpeg-Dash.md)，
+下面則是嘗試的過程。
+
 Dash player need mpd(Media Presentation Description)file and corresponding segments.
 
 How to provide these? There are two alternatives.

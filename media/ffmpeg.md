@@ -28,5 +28,11 @@ ffmpeg -i example2.mp3 -af silencedetect=n=-50dB:d=0.5 -f null -
 fmpeg.exe -ss 0:55 -t 0:10 -i Mia201705061105.mp4 -an -f image2 "output_%05d.jpg"
 ```
  
+## How to get codecs supported by ffmpeg
+指令
+```
+ffmpeg -codes
+```
+可以用來得知 ffmpeg 支援影音檔那些編碼方式。
 
 

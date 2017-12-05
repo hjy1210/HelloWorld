@@ -1,7 +1,7 @@
 # Mpeg-Dash
 
 [Mpeg-Dash](https://bitmovin.com/dynamic-adaptive-streaming-http-mpeg-dash/) 
-介紹了 Dynamic Adaptive Streaming over HTTP，讓接收端設備可以動態的根據連線的速度選取恰當的影音檔片段，網路平寬不足時選取較低解析度的影音檔，網路平寬充裕時選取較高解析度的影音檔。
+介紹了 Dynamic Adaptive Streaming over HTTP，讓接收端設備可以動態的根據連線的速度選取恰當的影音檔片段，網路頻寬不足時選取較低解析度的影音檔，網路頻寬充裕時選取較高解析度的影音檔。
 
 ## Dashify content
 將完整的影音檔切割成長度相同的片段，每一片段製作出解析度不同而時間長度相同的檔案，並用mpd檔當作影音目錄。
@@ -27,11 +27,9 @@ dashify input.mp4
 手動將這四個mpd合併成完整的目錄output_AV.mpd，方法如下：
 1. 將 input.mp4_720V.mpd 複製到 output_AV.mpd。
 2. 將 input.mp4_540V.mpd 裡面的節點`<Representation id="1"....></Representation>` 
-複製並貼到 output_AV.mpd 裡面的節點`<Representation id="1"....></Representation>`
-之後，並將新加入的 id="1" 改成 id="2"。
+複製並貼到 output_AV.mpd 裡面的節點`<Representation id="1"....></Representation>`之後，並將新加入的 id="1" 改成 id="2"。
 3. 將 input.mp4_360V.mpd 裡面的節點`<Representation id="1"....></Representation>` 
-複製並貼到 output_AV.mpd 裡面的節點`<Representation id="2"....></Representation>`
-之後，並將 id="1" 改成 id="3"。
+複製並貼到 output_AV.mpd 裡面的節點`<Representation id="2"....></Representation>`之後，並將 id="1" 改成 id="3"。
 4. 將 input.mp4_720A.mpd 裡面的節點 `<AdaptationSet...>...</AdaptationSet>`
 複製並貼到 output_AV.mpd 裡面的節點 `<AdaptationSet...>...</AdaptationSet>` 的後面。
 
@@ -70,39 +68,24 @@ youtube-dl.exe https://www.youtube.com/watch?v=fk4BbF7B29w
 ```
 會下載得 "Adele - Send My Love (To Your New Lover)-fk4BbF7B29w.mkv"
 
-## ffmpeg
-批次檔 standardize.bat
-```
-d:\ffmpeg\bin\ffmpeg -y -i %1 -c:a aac -ac 2 -ab 128k -c:v libx264 -x264opts keyint=24:min-keyint=24:no-scenecut -b:v 1500k -maxrate 1500k -bufsize 1000k -vf "scale=1280:720,fps=24" %1_720.mp4
-```
-可用來將影音檔標準化以利銜接。用法為
-```
-standardize input.mkv
-```
-會產生 input.mkv_720.mp4
+## 影音檔串接
 
-```
-ffmpeg -f concat
-```
-可以用來合併檔案。請參考[Concatenating media files](https://trac.ffmpeg.org/wiki/Concatenate)。
+我們可以用 MovieMaker 或 VideoStudioX 等軟體將數個影音檔串接編輯。也可以用FFmpeg來串接。
 
-例如：mylist.txt的內容如下：
-```
-file adele1.webm_720.mp4
-file Adele2.mkv_720.mp4
-```
-則指令
-```
-d:\ffmpeg\bin\ffmpeg -f concat -safe 0 -i mylist.txt -c copy two.mp4
-```
-會將兩個檔案 adele1.webm_720.mp4 與 Adele2.mkv_720.mp4 銜接成 two.mp4。
+下面是一個用FFmpeg來串接的例子。AdeleHD.mp4是一個1280x720,fps=25的影音檔，Mia.mp4是一個360x640,fps=24的影音檔。我們要將它們連接起來。
 
-注意：要用上述方法銜接檔案，兩個檔案的video size/Aspect Ratio必須相同。
-若兩個檔案的video size 不同，可用MovieMaker來串接。
+第一步要做的是修改成1280x720的影片。指令
 ```
-ffmpeg -codes
+d:\ffmpeg\bin\ffmpeg -y -i mia.mp4 -c:a aac -ac 2 -ab 128k -c:v libx264 -vf "scale=trunc(oh*a/2)*2:720,pad=1280:720:(1280-trunc(oh*a/2)*2)/2:0:black" -sar 1:1  mia_scaled.mp4
 ```
-可以用來得知 ffmpeg 支援影音檔那些編碼方式。
+將360x640的影片先放大成404x720的影片，其中oh=720,a=9/16,trunc(oh*a/2)*2=404。再將左右兩側平均補上黑色，最後設定sample aspect ratio(sar=1:1)。產生1280x720,sar=1:1的影片mia_scaled.mp4。
+
+指令
+```
+d:\ffmpeg\bin\ffmpeg -y -i adeleHD.mp4 -i mia_scaled.mp4 -i adeleHD.mp4 -filter_complex "[0:v:0][0:a:0][1:v:0][1:a:0][2:v:0][2:a:0]concat=n=3:v=1:a=1[outv][outa]" -map "[outv]" -map "[outa]" concatedthree.mp4
+```
+將 adeleHD.mp4, mia_scaled.mp4, adeleHD.mp4 三個檔案串接起來，其中的[0:v:0]代表檔案0(adeleHD.mp4)的Video stream 0,[0:a:0]代表檔案0(adeleHD.mp4)的Audeo stream 0,其中的[1:v:0]代表檔案1(mia_scaled.mp4)的Video stream 0,[1:a:0]代表檔案1(mia_scaled.mp4)的Audeo stream 0,[2:v:0]代表檔案2(adeleHD.mp4)的Video stream 0,[2:a:0]代表檔案2(adeleHD.mp4)的Audeo stream 0，得到檔案concatedthree.mp4。各個參數的意義請看[說明文件](https://trac.ffmpeg.org/wiki/Concatenate)
+
 
 ## 參考資料
 * [Mpeg-Dash](https://bitmovin.com/dynamic-adaptive-streaming-http-mpeg-dash/)

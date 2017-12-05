@@ -201,3 +201,9 @@ After unzip：
 ## nodejs-demo
 1. 練習 xmldom : Xml DOM
 2. 練習 xml2js : conversion between xml file and json file.
+
+## Mpeg-Dash
+[Mpeg-Dash](https://bitmovin.com/dynamic-adaptive-streaming-http-mpeg-dash/) 
+介紹了 Dynamic Adaptive Streaming over HTTP，讓接收端設備可以動態的根據連線的速度選取恰當的影音檔片段，網路頻寬不足時選取較低解析度的影音檔，網路頻寬充裕時選取較高解析度的影音檔。
+
+成功的操作步驟請看[Mpeg-Dash](media/Mpeg-Dash.md)。
