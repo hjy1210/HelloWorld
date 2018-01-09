@@ -129,7 +129,7 @@ def separation(a,b):
     #if val< -1.0:
     #    val= -1.0
     return(math.acos(val))
-def ShadowCone(s,rs,o,ro,asin):
+def ShadowCone(s,rs,o,ro):
     o2s=s-o
     #dso=np.array([np.linalg.norm(x) for x in o2s])
     dso=np.linalg.norm(o2s,axis=1)
@@ -139,18 +139,16 @@ def ShadowCone(s,rs,o,ro,asin):
     ucenter=np.array([o[i]+du[i]*sodir[i] for i in range(len(o))])
     #ucenter=o+np.diag(du).dot(sodir) ##### inefficient
     #uarc=np.array([math.asin(rs/(dso[i]+du[i])) for i in range(len(s))])
-    if asin:
-        #uarc=np.array([math.asin(ro/du[i]) for i in range(len(s))])
-        uarc=np.arcsin(ro/du)
-    else:
-        uarc=ro/du
+    #if asin:
+    uarc=np.arcsin(ro/du)
+    #else:
+    #    uarc=ro/du
     dp=ro/(rs+ro)*dso
     #parc=np.array([math.asin(rs/(dso[i]-dp[i])) for i in range(len(s))])
-    if asin:
-        #parc=np.array([math.asin(ro/dp[i]) for i in range(len(s))])
-        parc=np.arcsin(ro/dp)
-    else:
-        parc=ro/dp
+    #if asin:
+    parc=np.arcsin(ro/dp)
+    #else:
+    #    parc=ro/dp
     pcenter=np.array([o[i]-dp[i]*sodir[i] for i in range(len(o))])
     #pcenter=o-np.diag(dp).dot(sodir) ##### inefficient
     return((ucenter,pcenter,uarc,parc,sodir))
@@ -198,7 +196,7 @@ def Region(S,O,T,rt,Ucenter,Pcenter,uarc,parc,SOdir):
             continue
     return(res)  
 
-def EarthRegion(times,asin):
+def EarthRegion(times):
     gmttimes=times-eighthours
     sun=get_body('sun', gmttimes,  ephemeris='jpl')
     moon=get_body('moon', gmttimes,  ephemeris='jpl')
@@ -211,45 +209,45 @@ def EarthRegion(times,asin):
     moonpos=np.transpose(np.array([moon.cartesian.x.value,
                                   moon.cartesian.y.value,moon.cartesian.z.value]))
     earthpos=np.zeros((len(sunpos),3))
-    Ucenter,Pcenter,uarc,parc,SOdir=ShadowCone(sunpos,rs,moonpos,ro,asin)
+    Ucenter,Pcenter,uarc,parc,SOdir=ShadowCone(sunpos,rs,moonpos,ro)
     return(Region(sunpos,moonpos,earthpos,re,Ucenter,Pcenter,uarc,parc,SOdir))
     
 
-def SolarEclipseOne0(start,end,asin=False):
+def SolarEclipseOne0(start,end):
     #print((Time(end)-Time(start)).value)
     minutecount=int(np.ceil((Time(end)-Time(start)).value*1440))
     times=Time(start)+np.linspace(0.,1.,minutecount+1)*(Time(end)-Time(start))
-    regions=EarthRegion(times,asin)
+    regions=EarthRegion(times)
     #print(times[0],regions[0])
     for i in range(len(times)-1):
         if regions[i]!=regions[i+1]:
             newsymbol=regions[i+1]
             oldsymbol=regions[i]
             sectimes=times[i]+onesecond*np.linspace(0,60,61)
-            secregions=EarthRegion(sectimes,asin)
+            secregions=EarthRegion(sectimes)
             for j in range(61):
                 j1=60-j
                 if secregions[j1]!=newsymbol:
                     print(sectimes[j1],newsymbol)
                     break
-def SolarEclipseOne(start,end,asin=False):
+def SolarEclipseOne(start,end):
     #print((Time(end)-Time(start)).value)
     minutecount=int(np.ceil((Time(end)-Time(start)).value*1440))
     times=Time(start)+np.linspace(0.,1.,minutecount+1)*(Time(end)-Time(start))
-    regions=EarthRegion(times,asin)
+    regions=EarthRegion(times)
     #print(times[0],regions[0])
     for i in range(len(times)-1):
         if regions[i]!=regions[i+1]:
             newsymbol=regions[i+1]
             oldsymbol=regions[i]
             sectimes=times[i]+(times[i+1]-times[i])*np.linspace(0.,1.,61)
-            secregions=EarthRegion(sectimes,asin)
+            secregions=EarthRegion(sectimes)
             for j in range(61):
                 j1=60-j
                 if secregions[j1]!=newsymbol:
                     print(sectimes[j1],'地球',codedict[oldsymbol],'->',codedict[newsymbol])
                     break
-def SolarEclipse(start,end,asin=False):
+def SolarEclipse(start,end):
     darkmoon=CCTerm(start,end,'moon')
     darkmoon=[codedate[1] for codedate in darkmoon if codedate[0]==0]
     #print(darkmoon)
@@ -259,8 +257,8 @@ def SolarEclipse(start,end,asin=False):
         start=dark-halfday
         end=dark+halfday
         #print([str(start),str(end)])
-        SolarEclipseOne(str(start),str(end),asin)
-def LunarRegion(times,asin,air):
+        SolarEclipseOne(str(start),str(end))
+def LunarRegion(times,air):
     gmttimes=times-eighthours
     sun=get_body('sun', gmttimes,  ephemeris='jpl')
     moon=get_body('moon', gmttimes,  ephemeris='jpl')
@@ -276,26 +274,26 @@ def LunarRegion(times,asin,air):
     # reference http://eclipse.gsfc.nasa.gov/LEcat5/shadow.html
     # NASA 用 Danjon 的方法，將地球放大成 1.01倍，中央氣象局用 Chauvenet 的方法，類似於將地球放大1.02倍
     # 此處採用Danjon 的方法
-    Ucenter,Pcenter,uarc,parc,SOdir=ShadowCone(sunpos,rs,earthpos,(1+air)*re,asin)
+    Ucenter,Pcenter,uarc,parc,SOdir=ShadowCone(sunpos,rs,earthpos,(1+air)*re)
     return(Region(sunpos,earthpos,moonpos,rm,Ucenter,Pcenter,uarc,parc,SOdir))
 
-def LunarEclipseOne(start,end,asin=True,air=0.02):
+def LunarEclipseOne(start,end,air=0.02):
     minutecount=int(np.ceil((Time(end)-Time(start)).value*1440))
     times=Time(start)+np.linspace(0.,1.,minutecount+1)*(Time(end)-Time(start))
-    regions=LunarRegion(times,asin,air)
+    regions=LunarRegion(times,air)
     # print(times[0],regions[0])
     for i in range(len(times)-1):
         if regions[i]!=regions[i+1]:
             oldsymbol=regions[i]
             newsymbol=regions[i+1]
             sectimes=times[i]+onesecond*np.linspace(0,60,61)
-            secregions=LunarRegion(sectimes,asin,air)
+            secregions=LunarRegion(sectimes,air)
             for j in range(61):
                 j1=60-j
                 if secregions[j1]!=newsymbol:
                     print(sectimes[j1],'月亮',codedict[oldsymbol],'->',codedict[newsymbol])
                     break
-def LunarEclipse(start,end,asin=True,air=0.02):
+def LunarEclipse(start,end,air=0.02):
     darkmoon=CCTerm(start,end,'moon')
     darkmoon=[codedate[1] for codedate in darkmoon if codedate[0]==2]
     #print(darkmoon)
@@ -305,9 +303,9 @@ def LunarEclipse(start,end,asin=True,air=0.02):
         start=dark-halfday
         end=dark+halfday
         #print([str(start),str(end)])
-        LunarEclipseOne(str(start),str(end),asin)
+        LunarEclipseOne(str(start),str(end))
 
-def Eclipse(start,end,asin=True,air=0.02):
+def Eclipse(start,end,air=0.02):
     darkmoon=CCTerm(start,end,'moon')
     # darkmoon=[codedate[1] for codedate in darkmoon if codedate[0]==0 ]
     #print(darkmoon)
@@ -319,9 +317,9 @@ def Eclipse(start,end,asin=True,air=0.02):
         end=dark+halfday
         #print([str(start),str(end)])
         if darkmoon[i][0]==0:
-            SolarEclipseOne(str(start),str(end),asin)
+            SolarEclipseOne(str(start),str(end))
         else:
-            LunarEclipseOne(str(start),str(end),asin,air)
+            LunarEclipseOne(str(start),str(end),air)
 
 def obj_sight(date,objname,diskanglestr,lonstr,latstr,tzinhours):
     """
