@@ -26,6 +26,7 @@ Following are some git commands:
 * git status
 * git remote add origin *gitub address*
 * git push origin master
+* git config --global credential.helper wincred [Caching your GitHub password in Git](https://help.github.com/articles/caching-your-github-password-in-git/)
 
 #### Git version with office documents
 **git diff can compare word documents, so we can use git to do version control of office documents.**
