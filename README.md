@@ -151,8 +151,8 @@ $$
 $$
 
 $$|x|=\left\{\begin{array}{rl}
--x&\mbox{if $x<0$}\cr
-x&\mbox{otherwise}
+-x&\rm{if\ } x<0\\
+x&\rm{otherwise}
 \end{array}\right.$$
 
 ## PptxGenJS
