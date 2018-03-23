@@ -85,3 +85,42 @@ $$\begin{array}{rcl}
 &=&\sqrt{\frac{1}{2M}}\frac{2}{3}(2M)^{\frac{3}{2}}\\
 &=&\frac{4}{3}M
 \end{array}$$
+
+### 自由落體觀點，靜止出發的自由落體，穿過$2M$到達黑洞中心所耗時間的最大值
+
+設自由落體從 $r=r_0$ 出發，由 $2M$ 到中心的時間用 $T_{r_0}$ 表示，則 $\lim_{r_0->2M^+}T_{r_0}$ 為所求的值。
+
+自由落體從 $r=r_0$ 出發，遵循的方程式為
+$$\frac{E}{M}=\sqrt{1-\frac{2M}{r_0}}=(1-\frac{2M}{r})\frac{dt}{d\tau}\equiv f\frac{dt}{d\tau}$$
+
+$$\frac{d\tau}{dt}=f\sqrt{\frac{r_0}{r_0-2M}}\equiv f K$$
+
+另一方面
+
+$$
+\frac{d\tau}{dt}=\sqrt{f-\frac{\dot{r}^2}{f}}
+$$
+
+結合上面兩式，得到
+$$
+\dot{r}=-f\sqrt{1-fK^2}
+$$
+
+接著
+
+$$
+d\tau=\frac{d\tau}{dr}dr=\frac{\frac{d\tau}{dt}}{\frac{dr}{dt}}dr=\frac{fK}{-f\sqrt{1-fK^2}}dr
+=\frac{-1}{\sqrt{\frac{1}{K^2}-f}}dr$$
+
+最後
+$$
+\begin{array}{rcl}
+\lim_{r_0->2M^+}T_{r_0}&=&\lim_{r_0->2M^+}\int_{2M}^0 \frac{-1}{\sqrt{\frac{1}{K^2}-f}}dr\\
+&=&\lim_{K->\infty}\int_{2M}^0 \frac{-1}{\sqrt{\frac{1}{K^2}-f}}dr\\
+&=&\int_{2M}^0\frac{-1}{\sqrt{-f}}dr\\
+&=&\int_{0}^{2M}\frac{1}{\sqrt{\frac{2M}{r}-1}}dr\\
+&=&4M\int_0^\infty\frac{1}{(1+u^2)^2}du\ [\text{變數變換}u=\sqrt{\frac{2M}{r}-1}]\\
+&=&4M\int_0^{\pi/2}\cos^2\theta d\theta\ [\text{變數變換}u=\tan\theta]\\
+&=&\pi M
+\end{array}
+$$
