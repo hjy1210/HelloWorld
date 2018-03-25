@@ -36,6 +36,8 @@ bundle.js
 *.bundle.js
 baseline/
 onDemand/
+**/bin/
+**/obj/
 
 # Dependency directories
 node_modules/
