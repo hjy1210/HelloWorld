@@ -38,6 +38,7 @@ baseline/
 onDemand/
 **/bin/
 **/obj/
+**/.vs/
 
 # Dependency directories
 node_modules/

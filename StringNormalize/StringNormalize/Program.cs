@@ -77,14 +77,49 @@ namespace StringNormalize
 			Console.WriteLine();
 
 		}
-		static void test4()
+		static void test(string s1)
 		{
-			string str = "凉";
-			byte[] big5bytes = System.Text.Encoding.GetEncoding("BIG5").GetBytes(str);
-			Console.WriteLine(big5bytes.Length); // output: 1
-			string str2 = "\u51C9";
-			byte[] big5bytes2 = System.Text.Encoding.GetEncoding("BIG5").GetBytes(str2);
-			Console.WriteLine(big5bytes2.Length); // output: 1
+			// string s1 = "數數气氣"; //new String(new char[] { '\u0063', '\u0301', '\u0327', '\u00BE' });
+			string s2 = s1.Normalize();
+			string s3 = s1.Normalize(NormalizationForm.FormKC);
+			string divider = new String('-', 80);
+			divider = String.Concat(Environment.NewLine, divider, Environment.NewLine);
+
+			Show(s1, s1);
+			Show(s2, s2);
+			Show(s3, s3);
+			Console.WriteLine("s1) Is s1 normalized to the default form (Form C)?: {0}",
+							 s1.IsNormalized(NormalizationForm.FormC));
+			Console.WriteLine("s1) Is s1 normalized to the default form (Form KC)?: {0}",
+							 s1.IsNormalized(NormalizationForm.FormKC));
+			Console.WriteLine("s2) Is s2 normalized to the default form (Form C)?: {0}",
+							 s2.IsNormalized(NormalizationForm.FormC));
+			Console.WriteLine("s2) Is s2 normalized to the default form (Form KC)?: {0}",
+							 s2.IsNormalized(NormalizationForm.FormKC));
+			Console.WriteLine("s3) Is s3 normalized to the default form (Form C)?: {0}",
+							 s3.IsNormalized(NormalizationForm.FormC));
+			Console.WriteLine("s3) Is s3 normalized to the default form (Form KC)?: {0}",
+							 s3.IsNormalized(NormalizationForm.FormKC));
+
+			Console.WriteLine();
+
+		}
+		static void test2()
+		{
+			test("机機");
+			test("數數");
+			test("啟啓啓啟");
+			test("兀兀");
+			test("嗀嗀");
+			test("黄黃");
+			Console.WriteLine("{0} 是 Big5? {1}", "數", Normalize.IsBig5("數"));
+			Console.WriteLine("{0} 是 Big5? {1}", "數", Normalize.IsBig5("數"));
+			Normalize.CJKNCNBig5("數數");
+			Console.WriteLine(Normalize.ushort2string((15 * 16 + 9) * 256 + (6 * 16 + 9)));
+			Console.WriteLine(Normalize.UnicodeRange("F969", "F973"));
+			Normalize.CJKNormalizeNotInBig5("F900FAD9");
+			Console.WriteLine("Press any key to continue");
+			Console.ReadKey();
 		}
 		static void test3()
 		{
@@ -97,6 +132,15 @@ namespace StringNormalize
 			sw.WriteLine(data);
 			sw.Close();
 
+		}
+		static void test4()
+		{
+			string str = "凉";
+			byte[] big5bytes = System.Text.Encoding.GetEncoding("BIG5").GetBytes(str);
+			Console.WriteLine(big5bytes.Length); // output: 1
+			string str2 = "\u51C9";
+			byte[] big5bytes2 = System.Text.Encoding.GetEncoding("BIG5").GetBytes(str2);
+			Console.WriteLine(big5bytes2.Length); // output: 1
 		}
 		static void test5()
 		{
@@ -131,57 +175,35 @@ namespace StringNormalize
 			Console.WriteLine("U+{0:X4}", (int)s[0]);
 			Console.WriteLine(s);
 		}
+		static void test9()
+		{
+			string s = "黃黄";
+			string dst = s.Normalize(NormalizationForm.FormKC);
+			Console.WriteLine(dst);
+		}
+		static void test10()
+		{
+			string s = "數學";
+			char c = s[0];
+			string s2 = new string(c, 10);
+			Console.WriteLine(string.Format("{0:4X},{1},{2}", Char.ConvertToUtf32(s, 0), Convert.ToChar(0x6578), Convert.ToChar(0xf969)));
+			Console.WriteLine(s2);
+		}
 		static void Main()
 		{
-			test3();
-			//test5();
-			//test6();
-			//test7();
-			//test8();
-		}
-		static void test2()
-		{
-			test("机機");
-			test("數數");
-			test("啟啓啓啟");
-			test("兀兀");
-			test("嗀嗀");
-			test("黄黃");
-			Console.WriteLine("{0} 是 Big5? {1}", "數", Normalize.IsBig5("數"));
-			Console.WriteLine("{0} 是 Big5? {1}", "數", Normalize.IsBig5("數"));
-			Normalize.CJKNCNBig5("數數");
-			Console.WriteLine(Normalize.ushort2string((15*16+9)*256+(6*16+9)));
-			Console.WriteLine(Normalize.UnicodeRange("F969","F973"));
-			Normalize.CJKNormalizeNotInBig5("F900FAD9");
-			Console.WriteLine("Press any key to continue");
-			Console.ReadKey();
-		}
-		static void test(string s1)
-		{
-			// string s1 = "數數气氣"; //new String(new char[] { '\u0063', '\u0301', '\u0327', '\u00BE' });
-			string s2 = s1.Normalize();
-			string s3 = s1.Normalize(NormalizationForm.FormKC);
-			string divider = new String('-', 80);
-			divider = String.Concat(Environment.NewLine, divider, Environment.NewLine);
-
-			Show(s1, s1);
-			Show(s2, s2);
-			Show(s3, s3);
-			Console.WriteLine("s1) Is s1 normalized to the default form (Form C)?: {0}",
-							 s1.IsNormalized(NormalizationForm.FormC));
-			Console.WriteLine("s1) Is s1 normalized to the default form (Form KC)?: {0}",
-							 s1.IsNormalized(NormalizationForm.FormKC));
-			Console.WriteLine("s2) Is s2 normalized to the default form (Form C)?: {0}",
-							 s2.IsNormalized(NormalizationForm.FormC));
-			Console.WriteLine("s2) Is s2 normalized to the default form (Form KC)?: {0}",
-							 s2.IsNormalized(NormalizationForm.FormKC));
-			Console.WriteLine("s3) Is s3 normalized to the default form (Form C)?: {0}",
-							 s3.IsNormalized(NormalizationForm.FormC));
-			Console.WriteLine("s3) Is s3 normalized to the default form (Form KC)?: {0}",
-							 s3.IsNormalized(NormalizationForm.FormKC));
-
-			Console.WriteLine();
-
+			Dictionary<char,string> dict=Normalize.GetKcDict();
+			StreamWriter sw = new StreamWriter("stem.txt", false, Encoding.UTF8);
+			StreamWriter sw2 = new StreamWriter("stem2.txt", false, Encoding.UTF8);
+			foreach (char c in dict.Keys)
+			{
+				sw.WriteLine("{0:X4} {1} {2}",(int)c, c, dict[c]);
+				if (dict[c].Length > 1)
+				{
+					sw2.WriteLine("{0:X4} {1} {2}", (int)c, c, dict[c]);
+				}
+			}
+			sw.Close();
+			sw2.Close();
 		}
 		private static void Show(string title, string s)
 		{

@@ -13,6 +13,17 @@ namespace CJKUtil
 		static string[] U3400 = { "3400", "4DB5" };
 		static string[] U4E00 = { "4E00", "9FEA" };
 		static string[] UF900 = { "F900", "FAD9" };
+		static Dictionary<string, ushort[]> charRangeDict= new Dictionary<string, ushort[]>{
+			{ "u3400", new ushort[]{ 0x3400, 0x4db5 } },
+			{ "u4e00", new ushort[]{ 0x4e00, 0x9fea } },
+			{ "u2e80", new ushort[]{ 0x2e80, 0x2ef3 } },
+			{ "u2f00", new ushort[]{ 0x2f00, 0x2fd5 } },
+			{ "u2ff0", new ushort[]{ 0x2ff0, 0x2ffb } },
+			{ "u3100", new ushort[]{ 0x3100, 0x312f } },
+			{ "u31a0", new ushort[]{ 0x31a0, 0x31bf } },
+			{ "u31c0", new ushort[]{ 0x31c0, 0x31e3 } },
+			{ "uf900", new ushort[]{ 0xf900, 0xfad9 } }
+		};
 		static string[] code ={"0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
 			"A", "B", "C", "D", "E", "F"};
 		static Dictionary<string, int> Hex = new Dictionary<string, int>{
@@ -142,7 +153,7 @@ namespace CJKUtil
 			for (ushort n = ustart; n <= uend; n = (ushort)(n + 1))
 			{
 				string s = ushort2string(n);
-				string snormal = s.Normalize();
+				string snormal = s.Normalize(NormalizationForm.FormKC);
 				if (IsBig5(snormal))
 				{
 					normal++;
@@ -178,10 +189,38 @@ namespace CJKUtil
 		}
 		public static void CJKNormalizeNotInBig5(string startend)
 		{
-			StreamWriter sw = new StreamWriter(startend,false,Encoding.UTF8);
+			StreamWriter sw = new StreamWriter(startend+".txt",false,Encoding.UTF8);
 			sw.WriteLine(CJKNormalizeNotInBig5(startend.Substring(0, 4), startend.Substring(4, 4)));
 			sw.Flush();
 			sw.Close();
+		}
+		public static Dictionary<char,string> GetKcDict()
+		{
+			Dictionary<char, StringBuilder> dictStem = new Dictionary<char, StringBuilder>();
+			foreach (string name in charRangeDict.Keys)
+			{
+				//Console.WriteLine(name);
+				for (long code=charRangeDict[name][0]; code <= charRangeDict[name][1]; code++)
+				{
+					char c = System.Convert.ToChar((ushort)code);
+					char stem = (c.ToString().Normalize(NormalizationForm.FormKC))[0];
+					if (dictStem.Keys.Contains(stem))
+					{
+						dictStem[stem].Append(c); 
+					} else
+					{
+						StringBuilder sb = new StringBuilder();
+						sb.Append(stem);
+						dictStem.Add(stem, sb);
+					}
+				}
+			}
+			Dictionary<char, string> dict = new Dictionary<char, string>();
+			foreach (char c in dictStem.Keys)
+			{
+				dict.Add(c, dictStem[c].ToString());
+			}
+			return dict;
 		}
 	}
 }
