@@ -55,6 +55,9 @@ reference:
 * [External Merge and Diff Tools](https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration)
 * [Adding an existing project to GitHub using the command line](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/)
 
+## Pandoc
+pandoc 可用來從 docx 檔案萃取出文字來。
+用 pandoc 把 docx 檔案轉成 txt，比 Microsoft-Interop 強，尤其是表格方面。
 ## cors
 If restful service, which is an express server, use [cors](https://www.npmjs.com/package/cors) as middleware,
 client websites in different domains can use restful service as back end.
