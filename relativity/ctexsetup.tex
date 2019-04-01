@@ -1,0 +1,61 @@
+\chapter{CTeX 文類正體字設定}
+在 MikTex2.9/tex/latex/ctex/config 目錄中，ctexops.cfg 與 ctex.cfg 是 \CTeX 的字型設定檔，預設字型是簡體字的微軟雅黑，對使用正體字的人來說，非常不方便。
+在不去更動這兩個設定檔的原則下，我們設法使用正體中文字型。
+\section{文類選項設定}
+\CTeX 的四種文類 ctexrep, ctexart, ctexbook, ctexbeamer，分別與 report, article, book, beamer 相對應。它們的預設字型都是簡體字字型。為了搭配正體字，在文類選項中，要設定 fontset 為 none，以 ctexrep 為例，語法為：
+\begin{quote}
+$\backslash$documentclass[fontset = none]\{ctexrep\} 
+\end{quote}
+\section{文類字型組合設定}
+在 \CTeX 的文類中，不同的場合使用不同的字型，將下列指令放在導言區(preamble)裡面：
+\begin{enumerate}
+\item $\backslash$setCJKmainfont\{微軟正黑體\} 
+\item $\backslash$setCJKsansfont\{標楷體\}，
+\item $\backslash$setCJKmonofont\{標楷體\}，
+\end{enumerate}
+來設定與英文normal, san serif, mono 等字型對應的正體中文字型。
+
+\section{切換字型指令設定}
+為了讓使用者在文章中可以自由切換字型，在導言區內用：
+\begin{itemize}
+\item
+\begin{enumerate}
+\item $\backslash$setCJKfamilyfont\{kai\}\{標楷體\}
+\item $\backslash$newcommand\{$\backslash$kai\}\{$\backslash$CJKfamily\{kai\}\}
+\end{enumerate}
+設定$\backslash$kai 指令，用來切換到正楷體。
+\item 
+\begin{enumerate}
+\item $\backslash$setCJKfamilyfont\{hei\}\{微軟正黑體\}
+\item $\backslash$newcommand\{$\backslash$hei\}\{$\backslash$CJKfamily\{hei\}\}
+\end{enumerate}
+設定$\backslash$hei 指令，用來切換到微軟正黑體。
+\end{itemize}
+\section{章節圖表名稱設定}
+為了讓章節圖表名稱
+使用正體字，在導言區\textit{}內用下面敘述設定：
+\begin{verbatim}
+\ctexset{
+  space=auto,
+  autoindent=false,
+  section={
+    name={第,節},
+    number={\arabic{chapter}.\arabic{section}},
+  },
+  chapter={
+    name={第,章},
+    number=\chinese{chapter},
+  },
+  part/name = {第,部分},
+  abstractname = 摘要,
+  appendixname = 附錄,
+  figurename={圖},
+  indexname={索引},
+  contentsname = {目錄},
+  listfigurename = {插圖列表},
+  listtablename = {表格列表},
+  proofname = 證明 ,
+  bibname = {參考文獻}
+}
+
+\end{verbatim}
